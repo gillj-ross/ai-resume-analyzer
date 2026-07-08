@@ -1,87 +1,37 @@
-# Welcome to React Router!
+# Resumind
 
-A modern, production-ready template for building full-stack React applications using React Router.
+**Resumind** is an AI-powered resume analyzer that gives you instant, actionable feedback on your resume — so you can stop guessing and start getting callbacks.
 
-[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/remix-run/react-router-templates/tree/main/default)
-
-## Features
-
-- 🚀 Server-side rendering
-- ⚡️ Hot Module Replacement (HMR)
-- 📦 Asset bundling and optimization
-- 🔄 Data loading and mutations
-- 🔒 TypeScript by default
-- 🎉 TailwindCSS for styling
-- 📖 [React Router docs](https://reactrouter.com/)
-
-## Getting Started
-
-### Installation
-
-Install the dependencies:
-
-```bash
-npm install
-```
-
-### Development
-
-Start the development server with HMR:
-
-```bash
-npm run dev
-```
-
-Your application will be available at `http://localhost:5173`.
-
-## Building for Production
-
-Create a production build:
-
-```bash
-npm run build
-```
-
-## Deployment
-
-### Docker Deployment
-
-To build and run using Docker:
-
-```bash
-docker build -t my-app .
-
-# Run the container
-docker run -p 3000:3000 my-app
-```
-
-The containerized application can be deployed to any platform that supports Docker, including:
-
-- AWS ECS
-- Google Cloud Run
-- Azure Container Apps
-- Digital Ocean App Platform
-- Fly.io
-- Railway
-
-### DIY Deployment
-
-If you're familiar with deploying Node applications, the built-in app server is production-ready.
-
-Make sure to deploy the output of `npm run build`
-
-```
-├── package.json
-├── package-lock.json (or pnpm-lock.yaml, or bun.lockb)
-├── build/
-│   ├── client/    # Static assets
-│   └── server/    # Server-side code
-```
-
-## Styling
-
-This template comes with [Tailwind CSS](https://tailwindcss.com/) already configured for a simple default starting experience. You can use whatever CSS framework you prefer.
+[**Try it live →**](https://ai-resume-analyzer-three-kohl.vercel.app/)
 
 ---
 
-Built with ❤️ using React Router.
+## What it does
+
+Upload your resume and Resumind will analyze it across four key dimensions:
+
+- **Tone & Style** — Is your language confident, professional, and consistent?
+- **Content** — Are you communicating impact, or just listing duties?
+- **Structure** — Is your resume easy to scan in 6 seconds?
+- **Skills** — Are the right keywords present for the roles you're targeting?
+
+You'll also get an **ATS score** — a measure of how well your resume would survive an Applicant Tracking System before a human ever sees it.
+
+---
+
+## How it works
+
+1. Sign in with your Puter account (free)
+2. Upload your resume as a PDF
+3. Get a full breakdown with a score, tips, and explanations — in seconds
+
+Your resumes are stored privately in your Puter account and can be reviewed anytime.
+
+---
+
+## Built with
+
+- [React Router v7](https://reactrouter.com)
+- [TailwindCSS v4](https://tailwindcss.com)
+- [Puter.js](https://puter.com) — auth, storage, and AI
+- [Claude](https://anthropic.com) — the model powering the analysis
