@@ -1,4 +1,4 @@
-import {type FormEvent, useState} from 'react'
+import {type FormEvent, useEffect, useState} from 'react'
 import Navbar from "~/components/Navbar";
 import FileUploader from "~/components/FileUploader";
 import {usePuterStore} from "~/lib/puter";
@@ -8,11 +8,18 @@ import {generateUUID} from "~/lib/utils";
 import {prepareInstructions} from "../../constants";
 
 const Upload = () => {
-    const { auth, isLoading, fs, ai, kv } = usePuterStore();
+    const { auth, isLoading, puterReady, fs, ai, kv } = usePuterStore();
     const navigate = useNavigate();
     const [isProcessing, setIsProcessing] = useState(false);
     const [statusText, setStatusText] = useState('');
     const [file, setFile] = useState<File | null>(null);
+
+    // Uploading needs a Puter account, so send visitors to sign in first.
+    // Wait until Puter has finished checking the session so signed-in users
+    // aren't bounced to the login page while that check is still running.
+    useEffect(() => {
+        if (puterReady && !isLoading && !auth.isAuthenticated) navigate('/auth?next=/upload');
+    }, [puterReady, isLoading, auth.isAuthenticated]);
 
     const handleFileSelect = (file: File | null) => {
         setFile(file)
