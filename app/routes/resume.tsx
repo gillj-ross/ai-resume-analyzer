@@ -11,7 +11,7 @@ export const meta = () => ([
 ])
 
 const Resume = () => {
-    const { auth, isLoading, fs, kv } = usePuterStore();
+    const { auth, isLoading, puterReady, fs, kv } = usePuterStore();
     const { id } = useParams();
     const [imageUrl, setImageUrl] = useState('');
     const [resumeUrl, setResumeUrl] = useState('');
@@ -19,8 +19,8 @@ const Resume = () => {
     const navigate = useNavigate();
 
     useEffect(() => {
-        if(!isLoading && !auth.isAuthenticated) navigate(`/auth?next=/resume/${id}`);
-    }, [isLoading])
+        if(puterReady && !isLoading && !auth.isAuthenticated) navigate(`/auth?next=/resume/${id}`);
+    }, [puterReady, isLoading, auth.isAuthenticated])
 
     useEffect(() => {
         const loadResume = async () => {
