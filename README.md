@@ -2,7 +2,10 @@
 
 **Resumind** is an AI-powered resume analyzer that gives you instant, actionable feedback on your resume — so you can stop guessing and start getting callbacks.
 
-[**Try it live →**](https://ai-resume-analyzer-three-kohl.vercel.app/)
+[**Try it live →**](https://ai-resume-analyzer-three-kohl.vercel.app/) (free Puter sign-in required)
+
+<!-- TODO: add a screenshot of the feedback page here -->
+<!-- ![Resumind feedback page](public/images/screenshot.png) -->
 
 ---
 
@@ -31,7 +34,38 @@ Your resumes are stored privately in your Puter account and can be reviewed anyt
 
 ## Built with
 
-- [React Router v7](https://reactrouter.com)
+- [React Router v7](https://reactrouter.com) + TypeScript
 - [TailwindCSS v4](https://tailwindcss.com)
-- [Puter.js](https://puter.com) — auth, storage, and AI
-- [Claude](https://anthropic.com) — the model powering the analysis
+- [Puter.js](https://puter.com) for auth, file storage, key-value storage, and AI calls
+- [Claude](https://anthropic.com), the model behind the analysis
+- PDF.js for converting the uploaded PDF into a preview image
+- Docker for containerized builds, deployed on Vercel
+
+---
+
+## Running locally
+
+```bash
+git clone https://github.com/gillj-ross/ai-resume-analyzer.git
+cd ai-resume-analyzer
+npm install
+npm run dev        # http://localhost:5173
+```
+
+No API keys are needed. Puter handles auth, storage, and AI calls in the browser once you sign in.
+
+Production build:
+
+```bash
+npm run build
+npm run start
+# or with Docker:
+docker build -t resumind .
+docker run -p 3000:3000 resumind
+```
+
+---
+
+## Credits
+
+Based on the [JavaScript Mastery](https://www.youtube.com/@javascriptmastery) AI Resume Analyzer tutorial. I used it as a starting point to learn React Router v7 and Puter.js, then deployed it myself.
