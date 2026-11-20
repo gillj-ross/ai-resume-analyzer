@@ -1,28 +1,27 @@
 import type { Route } from "./+types/home";
 import Navbar from "~/components/Navbar";
 import ResumeCard from "~/components/ResumeCard";
+import Landing from "~/components/Landing";
 import {usePuterStore} from "~/lib/puter";
-import {Link, useNavigate} from "react-router";
+import {Link} from "react-router";
 import {useEffect, useState} from "react";
 
 export function meta({}: Route.MetaArgs) {
   return [
     { title: "Resumind" },
-    { name: "description", content: "Smart feedback for your dream job!" },
+    { name: "description", content: "AI resume feedback with ATS scoring. Upload your resume and get specific tips in seconds." },
   ];
 }
 
 export default function Home() {
   const { auth, kv } = usePuterStore();
-  const navigate = useNavigate();
   const [resumes, setResumes] = useState<Resume[]>([]);
   const [loadingResumes, setLoadingResumes] = useState(false);
 
   useEffect(() => {
-    if(!auth.isAuthenticated) navigate('/auth?next=/');
-  }, [auth.isAuthenticated])
+    // Only signed-in users have saved resumes to load.
+    if (!auth.isAuthenticated) return;
 
-  useEffect(() => {
     const loadResumes = async () => {
       setLoadingResumes(true);
 
@@ -32,13 +31,21 @@ export default function Home() {
           JSON.parse(resume.value) as Resume
       ))
 
-      console.log("parsedResumes", parsedResumes);
       setResumes(parsedResumes || []);
       setLoadingResumes(false);
     }
 
     loadResumes();
-  }, []);
+  }, [auth.isAuthenticated]);
+
+  // Visitors who aren't signed in see the public landing page instead of
+  // being redirected straight to the login screen.
+  if (!auth.isAuthenticated) {
+    return <main className="bg-[url('/images/bg-main.svg')] bg-cover">
+      <Navbar />
+      <Landing />
+    </main>
+  }
 
   return <main className="bg-[url('/images/bg-main.svg')] bg-cover">
     <Navbar />
