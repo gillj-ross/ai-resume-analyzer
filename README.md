@@ -4,8 +4,7 @@
 
 [**Try it live →**](https://ai-resume-analyzer-three-kohl.vercel.app/) (free Puter sign-in required)
 
-<!-- TODO: add a screenshot of the feedback page here -->
-<!-- ![Resumind feedback page](public/images/screenshot.png) -->
+![Resumind dashboard showing past resume analyses with ATS scores](docs/images/feedback.png)
 
 ---
 
